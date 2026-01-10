@@ -24,7 +24,7 @@ useEffect(() => {
       <nav
         className={`fixed w-full z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-white/80 dark:bg-stone-950/60 backdrop-blur-md border-b border-stone-200 dark:border-white/5 py-2"
+            ? "bg-white/80  dark:bg-stone-950/60 backdrop-blur-md border-b border-stone-200 dark:border-white/5 py-2"
             : "bg-transparent border-b border-transparent py-7"
         }`}
       >
@@ -32,20 +32,31 @@ useEffect(() => {
           {/* Logo */}
           <Link
             href="/"
-            className="text-xl font-serif tracking-tighter text-white dark:text-stone-100"
+            className={`text-xl font-serif tracking-tighter transition-colors duration-300
+    ${
+      scrolled
+        ? "text-stone-900 dark:text-stone-100" // When scrolled: Black in Light mode, White in Dark mode
+        : "text-white" // When at top: Always white to pop off the hero image
+    }`}
           >
             COZY<span className="italic text-[#A67C52]">CORNERS</span>
           </Link>
           <div className="hidden md:flex items-center space-x-10">
-            {["Home", "Collections", "New Arrivals", "About", "Contact"].map((item) => (
-              <Link
-                key={item}
-                href={`/${item.toLowerCase().replace(" ", "-")}`}
-                className="text-sm font-medium  uppercase tracking-wide text-white/80 hover:text-[#A67C52] transition-colors"
-              >
-                {item}
-              </Link>
-            ))}
+            {["Home", "Collections", "New Arrivals", "About", "Contact"].map(
+              (item) => (
+                <Link
+                  key={item}
+                  href={`/${item.toLowerCase().replace(" ", "-")}`}
+                  className={`text-sm font-medium uppercase tracking-wide transition-colors hover:text-[#A67C52] ${
+                    scrolled
+                      ? "text-stone-800 dark:text-stone-100" // Scrolled: Dark gray in light mode, White in dark
+                      : "text-white" // Not scrolled: Always white (over hero)
+                  }`}
+                >
+                  {item}
+                </Link>
+              )
+            )}
           </div>
           {/* Theme Toggle & Cart */}
           <div className="flex items-center space-x-6">
@@ -57,7 +68,14 @@ useEffect(() => {
                 {theme === "dark" ? (
                   <Sun size={20} className="text-[#A67C52]" />
                 ) : (
-                  <Moon size={20} className="text-white" />
+                  <Moon
+                    size={20}
+                    className={`${
+                      scrolled
+                        ? "text-stone-900 dark:text-stone-100"
+                        : "text-white"
+                    }`}
+                  />
                 )}
               </button>
             )}

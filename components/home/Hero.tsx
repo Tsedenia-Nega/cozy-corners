@@ -68,11 +68,11 @@ export default function Hero() {
               href="/products"
               className="w-full sm:w-auto bg-white text-stone-900 px-12 py-4 text-[12px] font-bold tracking-[0.2em] uppercase hover:bg-[#A67C52] hover:text-white transition-all duration-500 shadow-2xl"
             >
-              Shop Collection
+              Shop Now
             </Link>
             <Link
               href="/about"
-              className="w-full sm:w-auto border border-white/40 backdrop-blur-md text-white px-12 py-4 text-[12px] font-bold tracking-[0.2em] uppercase hover:bg-white hover:text-stone-900 transition-all duration-500"
+              className="w-full sm:w-auto border border-white/40 backdrop-blur-md text-white px-6 py-4 text-[12px] font-bold tracking-[0.2em] uppercase hover:bg-white hover:text-stone-900 transition-all duration-500"
             >
               Our Story
             </Link>

@@ -18,7 +18,12 @@
     --foreground: #ededed;
   }
 } */
+@variant dark (&:where(.dark, .dark *));
 
+@theme {
+  /* Your custom colors/fonts go here in v4 */
+  --color-brand-gold: #A67C52;
+}
 body {
   /* background: var(--background); */
   /* color: var(--foreground); */
