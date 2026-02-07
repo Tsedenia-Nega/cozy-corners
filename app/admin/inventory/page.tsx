@@ -51,8 +51,10 @@ export default function InventoryPage() {
       {/* HEADER SECTION - Button is here! */}
       <div className="z-10 relative flex justify-between items-center mb-10 border-b pb-6">
         <div>
-          <h1 className="text-4xl font-extrabold text-slate-900">Inventory</h1>
-          <p className="text-slate-500">
+          <h1 className="text-4xl font-extrabold text-slate-900 dark:text-stone-100">
+            Inventory
+          </h1>
+          <p className="text-slate-500 dark:text-stone-100">
             Manage your Cozy Corner furniture collection.
           </p>
         </div>
@@ -72,7 +74,7 @@ export default function InventoryPage() {
           Loading your collection...
         </div>
       ) : (
-        <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
+        <div className="bg-white dark:bg-stone-900 rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
           {products.length > 0 ? (
             <div className="divide-y divide-slate-100">
               {products.map((p) => (
@@ -87,7 +89,7 @@ export default function InventoryPage() {
                       alt=""
                     />
                     <div>
-                      <h3 className="font-bold text-lg text-slate-800">
+                      <h3 className="font-bold text-lg text-slate-800 dark:text-stone-100">
                         {p.name}
                       </h3>
                       <span className="text-xs font-bold bg-amber-100 text-amber-700 px-3 py-1 rounded-full uppercase">

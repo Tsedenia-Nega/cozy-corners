@@ -1,25 +1,32 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, createJSONStorage } from "zustand/middleware";
 
-export const useWishlist = create<any>()(
+interface WishlistStore {
+  wishlist: any[];
+  toggleWishlist: (product: any) => void;
+}
+
+export const useWishlist = create<WishlistStore>()(
   persist(
     (set) => ({
       wishlist: [],
-      toggleWishlist: (product: any) =>
-        set((state: any) => {
-          const isFav = state.wishlist.some(
-            (item: any) => item.id === product.id,
-          );
+      toggleWishlist: (product) =>
+        set((state) => {
+          const isFav = state.wishlist.some((item) => item.id === product.id);
           if (isFav) {
             return {
-              wishlist: state.wishlist.filter(
-                (item: any) => item.id !== product.id,
-              ),
+              wishlist: state.wishlist.filter((item) => item.id !== product.id),
             };
           }
-          return { wishlist: [...state.wishlist, product] };
+          return {
+            wishlist: [...state.wishlist, product],
+          };
         }),
     }),
-    { name: "wishlist-storage" },
+    {
+      name: "wishlist-storage",
+      storage: createJSONStorage(() => localStorage),
+      skipHydration: true,
+    },
   ),
 );
