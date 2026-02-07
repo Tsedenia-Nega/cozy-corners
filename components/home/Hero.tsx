@@ -46,7 +46,7 @@ export default function Hero() {
       <div className="relative z-10 text-center px-6 max-w-5xl">
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-1000">
           <p className="text-white text-[10px] md:text-xs tracking-[0.8em] uppercase font-light">
-            Cozy Corners &mdash; 2026
+            Cozy Corners &mdash; {new Date().getFullYear()}
           </p>
 
           {/* PRIMARY SLOGAN */}
@@ -61,7 +61,7 @@ export default function Hero() {
             <br className="hidden md:block" />
             modern aesthetics with lasting durability.
           </p>
-         
+
           {/* BUTTONS */}
           <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-5">
             <Link

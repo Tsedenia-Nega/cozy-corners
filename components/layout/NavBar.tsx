@@ -46,7 +46,11 @@ useEffect(() => {
               (item) => (
                 <Link
                   key={item}
-                  href={`/${item.toLowerCase().replace(" ", "-")}`}
+                  href={
+                    item === "Home"
+                      ? "/"
+                      : `/${item.toLowerCase().replace(" ", "-")}`
+                  }
                   className={`text-sm font-medium uppercase tracking-wide transition-colors hover:text-[#A67C52] ${
                     scrolled
                       ? "text-stone-800 dark:text-stone-100" // Scrolled: Dark gray in light mode, White in dark
@@ -55,7 +59,7 @@ useEffect(() => {
                 >
                   {item}
                 </Link>
-              )
+              ),
             )}
           </div>
           {/* Theme Toggle & Cart */}

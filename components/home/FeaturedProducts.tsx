@@ -1,62 +1,67 @@
-const MOCK_PRODUCTS = [
-  {
-    id: 1,
-    name: "Harlow Oak Chair",
-    price: "$450",
-    category: "Dining",
-    img: "https://images.unsplash.com/photo-1592078615290-033ee584e267",
-  },
-  {
-    id: 2,
-    name: "Velvet Cloud Sofa",
-    price: "$1,200",
-    category: "Living",
-    img: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e",
-  },
-  {
-    id: 3,
-    name: "Minimalist Bed Frame",
-    price: "$890",
-    category: "Bedroom",
-    img: "https://images.unsplash.com/photo-1505693419148-4030a90441c9",
-  },
-  {
-    id: 4,
-    name: "Stone Coffee Table",
-    price: "$320",
-    category: "Living",
-    img: "https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc",
-  },
-];
+"use client";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import api from "@/lib/api";
 
 export default function FeaturedProducts() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchFeatured = async () => {
+      try {
+        setLoading(true);
+        const { data } = await api.get("/api/products");
+        const featuredItems = data.data || data;
+
+        // Slicing to 3 or 6 to keep the rows even
+        setProducts(featuredItems.slice(0, 3));
+      } catch (error) {
+        console.error("Error loading featured products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchFeatured();
+  }, []);
+
+  if (loading)
+    return (
+      <div className="text-center py-20 italic text-stone-400">
+        Loading curation...
+      </div>
+    );
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-      {MOCK_PRODUCTS.map((product) => (
-        <div key={product.id} className="group cursor-pointer">
-          {/* Image Container */}
-          <div className="relative aspect-[4/5] overflow-hidden bg-stone-100 dark:bg-stone-800 rounded-lg">
+    /* CHANGE: grid-cols-1 (mobile), sm:grid-cols-2 (tablet), lg:grid-cols-3 (desktop) */
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      {products.map((product: any) => (
+        <Link
+          href={`/product/${product.id}`}
+          key={product.id}
+          className="group block"
+        >
+          <div className="relative aspect-[4/5] overflow-hidden bg-stone-100 dark:bg-stone-800 rounded-sm">
             <img
-              src={product.img}
+              src={product.image}
               alt={product.name}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
             />
-            <button className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/90 dark:bg-stone-900/90 py-2 px-6 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm">
-              Quick Add
-            </button>
+            <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity" />
           </div>
 
-          {/* Details */}
-          <div className="mt-4 space-y-1">
-            <p className="text-xs uppercase tracking-widest text-stone-500">
+          <div className="mt-6 text-center">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-stone-400 mb-2">
               {product.category}
             </p>
-            <h3 className="text-lg font-medium text-stone-900 dark:text-white">
+            <h3 className="text-xl font-serif italic text-stone-900 dark:text-white mb-2">
               {product.name}
             </h3>
-            <p className="text-[#A67C52] font-semibold">{product.price}</p>
+            <p className="text-[#A67C52] font-light tracking-widest">
+              ${Number(product.price).toLocaleString()}
+            </p>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
