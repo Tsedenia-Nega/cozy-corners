@@ -65,7 +65,7 @@ export default function Hero() {
           {/* BUTTONS */}
           <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-5">
             <Link
-              href="/products"
+              href="/category/bedroom"
               className="w-full sm:w-auto bg-white text-stone-900 px-12 py-4 text-[12px] font-bold tracking-[0.2em] uppercase hover:bg-[#A67C52] hover:text-white transition-all duration-500 shadow-2xl"
             >
               Shop Now
