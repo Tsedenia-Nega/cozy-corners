@@ -80,7 +80,7 @@ export default function InventoryPage() {
               {products.map((p) => (
                 <div
                   key={p.id}
-                  className="flex items-center justify-between p-6 hover:bg-slate-50 transition-colors"
+                  className="flex items-center justify-between p-6 hover:bg-slate-100 dark:hover:bg-stone-700 transition-colors"
                 >
                   <div className="flex items-center gap-6">
                     <img
