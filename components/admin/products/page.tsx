@@ -13,10 +13,10 @@ export default function ProductModal({
   const [formData, setFormData] = useState({
     name: "",
     description: "",
-    price: "",
+    price: 0,
     category: "",
     image: "", // Stores the Base64 string or URL
-    stock: "",
+    stock: 0,
   });
 
   useEffect(() => {
@@ -26,10 +26,10 @@ export default function ProductModal({
       setFormData({
         name: "",
         description: "",
-        price: "",
+        price: 0,
         category: "",
         image: "",
-        stock: "",
+        stock: 0,
       });
     }
   }, [editingProduct, isOpen]);
