@@ -7,14 +7,14 @@ export const metadata: Metadata = {
     "Learn more about our design studio and get in touch with our team.",
 };
 
-export default function ContactPage() {
+export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-stone-950 text-stone-900 dark:text-stone-100 transition-colors duration-500 pt-20">
       <div className="max-w-6xl mx-auto px-6 py-20">
         {/* Header Section */}
         <header className="mb-16 text-center">
           <h1 className="text-4xl md:text-5xl font-serif mb-4 italic">
-            Contact Us
+            About Us
           </h1>
           <p className="text-stone-500 dark:text-stone-400 uppercase tracking-widest text-[10px] font-bold">
             Let us help you create your dream space
