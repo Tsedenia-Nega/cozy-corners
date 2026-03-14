@@ -37,12 +37,12 @@ export default function Home(){
 
       <section className="py-20 bg-stone-100 dark:bg-stone-800/30">
         <div className="container mx-auto px-6">
-          <div className="flex justify-between items-end mb-10">
+          {/* <div className="flex justify-between items-end mb-10">
             <h2 className="text-3xl font-serif">Trending Now</h2>
             <button className="text-[#A67C52] underline underline-offset-8">
               View All
             </button>
-          </div>
+          </div> */}
           <FeaturedProducts />
         </div>
       </section>
